@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = [12,2,4,53,23,8,9];
+
+    //1，声明一个空变量 初始值为要测验数组的第一个值，循环比较，最大值赋给新的变量
+    function max1(arr){
+
+        var result = arr[0];
+
+        for(var i=0;i<arr.length;i++){
+            result = Math.max(result,arr[i])
+        }
+
+        return result
+    }
+
+    console.log(max1(arr)); //53
+
+
+    //2，由于Math.max方法不能接受一个数组 因此可运用 es6解构方法求最大值
+    function max2(arr){
+
+        return Math.max(...arr)
+
+    }
+
+    console.log(max2(arr)); //53
+
+
+    //3， 通过数组sort方法排序，由小到大或者由大到小排序后，去最后一个值或者第一个值。此处由小到大排序
+    function max3(arr){
+
+        arr.sort( (a,b) => { //箭头函数
+            return a -b
+        } );
+
+        return arr[arr.length - 1]
+    }
+
+    console.log(max3(arr)); //53
+
+
+    //4,使用apply方法
+    function max4(arr){
+
+        return Math.max.apply(null,arr)
+    }
+
+    console.log(max4(arr)); //53
+
+
+    //5,使用 reduce迭代方法 ,得到他的返回值
+
+    function max5(arr){
+
+        let maxValue = arr.reduce( function(prev,next){
+            return Math.max(prev,next)
+        } );
+
+        return maxValue
+    }
+
+    console.log(max5(arr)) //53
+</script>
+</body>
+</html>
